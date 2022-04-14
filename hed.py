@@ -125,5 +125,5 @@ if __name__ == '__main__':
         cfg = yaml.load(file)
     hed = HED(tf.keras.Input((cfg['width'], cfg['height'], cfg['channel'])), cfg['weight_decay_ratio'])
     m = hed.hed_cnn()
-    m.model.summary()
+    m.summary()
 

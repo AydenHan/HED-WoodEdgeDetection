@@ -29,7 +29,7 @@ if __name__ == '__main__':
     dataParser = DataParser(cfg)
 
     hed = HED(tf.keras.Input((cfg['height'], cfg['width'], cfg['channel'])), cfg['weight_decay_ratio'])
-    hed.hed_cnn()
+    model = hed.hed_cnn()
 
     # call backs
     model_save = callbacks.ModelCheckpoint(filepath=cfg['model_weights_path'], verbose=1, save_best_only=True)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                                          write_graph=False, write_images=False)
 
     # training
-    train_history = hed.model.fit_generator(
+    train_history = model.fit_generator(
                         train_generator(dataParser),
                         steps_per_epoch=dataParser.steps_per_epoch,  # batch size
                         epochs=cfg['max_epochs'],
@@ -46,6 +46,6 @@ if __name__ == '__main__':
                         validation_steps=None,
                         callbacks=[model_save, csv_logger, tensor_board])
 
-    hed.model.save(cfg['model_weights_path'] + 'model.h5')
+    model.save(cfg['model_weights_path'] + 'model.h5')
 
     # print(train_history)

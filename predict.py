@@ -23,11 +23,11 @@ if __name__ == '__main__':
     dataParser = DataParser(cfg)
 
     hed = HED(tf.keras.Input((cfg['height'], cfg['width'], cfg['channel'])), cfg['weight_decay_ratio'])
-    hed.hed_cnn()
-    hed.model.load_weights(os.path.join(cfg['model_weights_path'], 'model.h5'))
+    model = hed.hed_cnn()
+    model.load_weights(os.path.join(cfg['model_weights_path'], 'model.h5'))
 
     input = [46]
-    y = hed.model(dataParser.get_single_test(input), training=False)
+    y = model(dataParser.get_single_test(input), training=False)
 
     for i in range(len(input)):
         rst = (np.squeeze(y[5][i].numpy()) * 255).astype(np.uint8)
