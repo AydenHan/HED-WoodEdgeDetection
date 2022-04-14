@@ -1,0 +1,2 @@
+- train.txt 存储图片和标签的名字
+- train_data/ 存储图片和标签

@@ -1,0 +1,27 @@
+## loss parameters
+weight_decay_ratio: 0.0002
+
+## train parameters
+log_dir: './logs/'
+model_weights_path: './data/weights/'
+
+train_dir: './data/dataset/train_data/'
+train_list: './data/dataset/train.txt'
+
+batch_size: 11
+max_epochs: 400
+
+## data process parameters
+height: 240
+width: 320
+channel: 3
+
+mean:
+  - 104.00698793 # blue 122.20417892
+  - 116.66876762 # green 119.55591164
+  - 122.67891434 # red 123.94569574
+
+
+#53.4698638405
+#448 448 974
+#b, g, r =  [ 122.20417892  119.55591164  123.94569574]
